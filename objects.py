@@ -95,8 +95,4 @@ class Quadrado:
     def desenhar(self, window):
         pygame.draw.rect(window, self.cor, (self.x, self.y, self.lado, self.lado))
     
-class Grid:
-    def __init__(self, linhas,largura):
-        self.linhas = linhas
-        self.largura = largura    
     
