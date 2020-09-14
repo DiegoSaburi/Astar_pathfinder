@@ -33,3 +33,23 @@ def draw_grid (window, linha, largura):
         pygame.draw(window, GREY, (0 , i * gap) , (largura , i*gap)) #denha as linhas horizontais
         for j in range(linha):
             pygame.draw(window, GREY, ( j* gap , 0 ), (j*gap , largura)) #desenha as linhas verticais
+
+def draw(window, grid, linha, largura):
+
+    window.fill(WHITE) #irá pintar toda a window de branco
+
+    for linha in grid:
+        for quad in linha:
+            quad.desenhar(window) #irá desenhar os quadrados da grid
+    
+    draw_grid(window, linha, largura)
+    pygame.display.update()
+
+def get_click_pos(pos, linha, largura):
+    gap = largura // linha
+    y,x = pos
+
+    linha = y // gap
+    coluna = x//gap
+
+    return linha,coluna
