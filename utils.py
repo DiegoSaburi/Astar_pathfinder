@@ -1,5 +1,5 @@
 from objects import *
-
+from globals import *
 def h(p1,p2):
     '''
     Retorna a distancia entre os pontos p1 e p2
@@ -10,6 +10,10 @@ def h(p1,p2):
 
     return abs(x1 - x2) + abs(y1 - y2)
 def make_grid (linhas,largura):
+    '''
+    Montará o grid
+    retorna lista de listas
+    '''
     grid = []
     gap = largura // linhas #tamanho da largura de cada cubo do grid
     for i in range(linhas):
@@ -20,3 +24,12 @@ def make_grid (linhas,largura):
 
     return grid
 
+def draw_grid (window, linha, largura):
+    '''
+    Desenhará as linhas do grid
+    '''
+    gap = largura//linha
+    for i in range(linha):
+        pygame.draw(window, GREY, (0 , i * gap) , (largura , i*gap)) #denha as linhas horizontais
+        for j in range(linha):
+            pygame.draw(window, GREY, ( j* gap , 0 ), (j*gap , largura)) #desenha as linhas verticais
