@@ -35,7 +35,8 @@ class Quadrado:
         retorna: Bool
         '''
         return self.cor == RED
-    
+    def update_neighbor(self):
+        pass
     def eh_aberto (self):
         '''
         Retorna True se o quadrado vizinho n foi "visitado" ainda

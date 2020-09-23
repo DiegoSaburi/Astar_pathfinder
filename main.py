@@ -33,9 +33,11 @@ while (run):
             if ( not inicio):
                 inicio = quad
                 inicio.set_inicio()
+                print(f"Inicio nas coordenadas X={coluna} Y={linha}")
             elif (not fim and inicio != quad):
                 fim = quad
                 fim.set_fim()
+                print(f"Fim nas coordenadas X={coluna} Y={linha}")
             elif( quad != inicio and quad != fim ):
                 quad.set_barreira()
         elif (pygame.mouse.get_pressed()[2]): # botão direito do mouse
@@ -47,6 +49,10 @@ while (run):
                 inicio = None
             if(quad == fim):
                 fim = None
+            
+        if ( event.type == pygame.KEYDOWN):
+            if (event.key == pygame.K_SPACE and not started):
+                print("Tecla espaço pressionada")
 
 
 pygame.quit()
