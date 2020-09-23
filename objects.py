@@ -85,7 +85,11 @@ class Quadrado:
         Seta o quadrado como inicio
         '''
         self.cor = ORANGE
-
+    def set_fim(self):
+        '''
+        Seta o quadrado como fim
+        '''
+        self.cor =  BLUE
     def set_path(self):
         '''
         Seta o quadrado como path

@@ -1,5 +1,6 @@
 from objects import *
 from globals import *
+import pygame
 def h(p1,p2):
     '''
     Retorna a distancia entre os pontos p1 e p2
@@ -30,16 +31,16 @@ def draw_grid (window, linha, largura):
     '''
     gap = largura//linha
     for i in range(linha):
-        pygame.draw(window, GREY, (0 , i * gap) , (largura , i*gap)) #denha as linhas horizontais
+        pygame.draw.line(window, GREY, (0 , i * gap) , (largura , i*gap)) #desenha as linhas horizontais
         for j in range(linha):
-            pygame.draw(window, GREY, ( j* gap , 0 ), (j*gap , largura)) #desenha as linhas verticais
+            pygame.draw.line(window, GREY, ( j* gap , 0 ), (j*gap , largura)) #desenha as linhas verticais
 
 def draw(window, grid, linha, largura):
 
     window.fill(WHITE) #irá pintar toda a window de branco
 
-    for linha in grid:
-        for quad in linha:
+    for row in grid:
+        for quad in row:
             quad.desenhar(window) #irá desenhar os quadrados da grid
     
     draw_grid(window, linha, largura)
