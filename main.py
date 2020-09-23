@@ -39,6 +39,14 @@ while (run):
             elif( quad != inicio and quad != fim ):
                 quad.set_barreira()
         elif (pygame.mouse.get_pressed()[2]): # botão direito do mouse
-            pass
+            pos = pygame.mouse.get_pos()
+            linha, coluna = get_click_pos(pos, LINHAS, largura)
+            quad = grid[linha][coluna]
+            quad.reset()
+            if(quad == inicio):
+                inicio = None
+            if(quad == fim):
+                fim = None
+
 
 pygame.quit()

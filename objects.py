@@ -23,7 +23,11 @@ class Quadrado:
         retorna: Tupla
         '''
         return self.linha, self.coluna
-    
+    def reset(self):
+        '''
+        Coloca o quadrado como sendo um quadrado a ser preenchido novamente
+        '''
+        self.cor = WHITE
     def eh_fechado (self):
         '''
         Retorna True se o quadrado ja foi "visitado"
@@ -89,7 +93,7 @@ class Quadrado:
         '''
         Seta o quadrado como fim
         '''
-        self.cor =  BLUE
+        self.cor =  TURQUOISE
     def set_path(self):
         '''
         Seta o quadrado como path
