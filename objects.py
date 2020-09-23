@@ -35,8 +35,26 @@ class Quadrado:
         retorna: Bool
         '''
         return self.cor == RED
-    def update_neighbor(self):
-        pass
+    def update_vizinhos(self,grid):
+        '''
+        Checkará a presença de vizinhos (quadrados abertos para encontrar o caminho)
+        '''
+        if( (self.linha < self.total_rows - 1) and not grid[self.linha+1][self.coluna].eh_barreira() ):
+            #Checkando presença abaixo
+            self.vizinhos.append(grid[self.linha + 1 ][self.coluna])
+
+        if((self.linha > 0 ) and not grid[self.linha - 1][self.coluna].eh_barreira()):
+            #checkando presença acima
+            self.vizinhos.append(grid[self.linha - 1 ][self.coluna])
+
+        if((self.coluna < self.total_rows - 1) and not grid[self.linha][self.coluna + 1].eh_barreira()):
+            #checkando presença na direita
+            self.vizinhos.append(grid[self.linha][self.coluna + 1])
+
+        if((self.coluna > 0) and not grid[self.linha][self.coluna - 1].eh_barreira()):
+            #checkando presença na esquerda
+            self.vizinhos.append(grid[self.linha][self.coluna - 1])
+
     def eh_aberto (self):
         '''
         Retorna True se o quadrado vizinho n foi "visitado" ainda
