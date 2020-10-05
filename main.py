@@ -52,7 +52,10 @@ while (run):
             
         if ( event.type == pygame.KEYDOWN):
             if (event.key == pygame.K_SPACE and not started):
-                print("Tecla espaço pressionada")
+                for row in grid:
+                    for quad in row:
+                        quad.update_vizinhos(grid)
+                algorithm(lambda: draw(WIN, grid, LINHAS, WIDTH), grid, inicio, fim )
 
 
 pygame.quit()
