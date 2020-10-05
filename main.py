@@ -4,12 +4,12 @@ from queue import PriorityQueue
 from globals import *
 from utils import *
 
-WIN = pygame.display.set_mode((WIDTH,600))
+WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("A* Path Finding")
 
-LINHAS = 30
+LINHAS = 40
 
-largura = WIDTH #int(input("Entre com a largura"))
+largura = WIDTH 
 
 grid = make_grid(LINHAS, largura)
 
@@ -56,6 +56,9 @@ while (run):
                     for quad in row:
                         quad.update_vizinhos(grid)
                 algorithm(lambda: draw(WIN, grid, LINHAS, WIDTH), grid, inicio, fim )
-
+            if (event.key == pygame.K_ESCAPE):
+                inicio = None
+                fim = None
+                grid = make_grid(LINHAS,WIDTH)
 
 pygame.quit()

@@ -3,11 +3,19 @@ from globals import *
 import pygame
 
 def draw_path(came_from, atual, draw):
+    '''
+    Desenha o caminho com a menor distancia encontrada
 
+    retorna:int distancia do caminho
+    '''
+    count = 0
     while atual in came_from:
         atual = came_from[atual]
         atual.set_path()
         draw()
+        count += 1
+    
+    return count
 
 def h(p1 : tuple,p2 : tuple):
     '''
@@ -21,7 +29,7 @@ def h(p1 : tuple,p2 : tuple):
 def make_grid (linhas : int,largura : int):
     '''
     Montará o grid
-    retorna lista de listas
+    retorna: lista de listas
     '''
     grid = []
     gap = largura // linhas #tamanho da largura de cada cubo do grid
@@ -42,6 +50,7 @@ def draw_grid (window, linha : int, largura : int):
         pygame.draw.line(window, GREY, (0 , i * gap) , (largura , i*gap)) #desenha as linhas horizontais
         for j in range(linha):
             pygame.draw.line(window, GREY, ( j* gap , 0 ), (j*gap , largura)) #desenha as linhas verticais
+            
 
 def draw(window, grid : list, linha : int, largura : int):
 
@@ -84,8 +93,9 @@ def algorithm(draw, grid : list, inicio : Quadrado, fim : Quadrado):
         open_set_hash.remove(atual)
 
         if atual == fim:
-            draw_path(came_from, fim, draw)
+            distancia = draw_path(came_from, fim, draw)
             fim.set_fim()
+            print(f"Distancia: {distancia} ")
             return True
         
         for vizinho in atual.vizinhos:
