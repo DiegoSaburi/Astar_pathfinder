@@ -4,10 +4,10 @@ from queue import PriorityQueue
 from globals import *
 from utils import *
 
-WIN = pygame.display.set_mode((WIDTH,WIDTH))
+WIN = pygame.display.set_mode((WIDTH,600))
 pygame.display.set_caption("A* Path Finding")
 
-LINHAS = 50
+LINHAS = 30
 
 largura = WIDTH #int(input("Entre com a largura"))
 

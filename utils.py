@@ -1,6 +1,14 @@
 from objects import *
 from globals import *
 import pygame
+
+def draw_path(came_from, atual, draw):
+
+    while atual in came_from:
+        atual = came_from[atual]
+        atual.set_path()
+        draw()
+
 def h(p1 : tuple,p2 : tuple):
     '''
     Retorna a distancia entre os pontos p1 e p2
@@ -76,6 +84,8 @@ def algorithm(draw, grid : list, inicio : Quadrado, fim : Quadrado):
         open_set_hash.remove(atual)
 
         if atual == fim:
+            draw_path(came_from, fim, draw)
+            fim.set_fim()
             return True
         
         for vizinho in atual.vizinhos:
