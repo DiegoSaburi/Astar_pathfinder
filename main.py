@@ -4,12 +4,12 @@ from queue import PriorityQueue
 from globals import *
 from utils import *
 
-WIN = pygame.display.set_mode((WIDTH,WIDTH))
+WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("A* Path Finding")
 
-LINHAS = 50
+LINHAS = 40
 
-largura = WIDTH #int(input("Entre com a largura"))
+largura = WIDTH 
 
 grid = make_grid(LINHAS, largura)
 
@@ -33,9 +33,11 @@ while (run):
             if ( not inicio):
                 inicio = quad
                 inicio.set_inicio()
+                print(f"Inicio nas coordenadas X={coluna} Y={linha}")
             elif (not fim and inicio != quad):
                 fim = quad
                 fim.set_fim()
+                print(f"Fim nas coordenadas X={coluna} Y={linha}")
             elif( quad != inicio and quad != fim ):
                 quad.set_barreira()
         elif (pygame.mouse.get_pressed()[2]): # botão direito do mouse
@@ -47,6 +49,16 @@ while (run):
                 inicio = None
             if(quad == fim):
                 fim = None
-
+            
+        if ( event.type == pygame.KEYDOWN):
+            if (event.key == pygame.K_SPACE and not started):
+                for row in grid:
+                    for quad in row:
+                        quad.update_vizinhos(grid)
+                algorithm(lambda: draw(WIN, grid, LINHAS, WIDTH), grid, inicio, fim )
+            if (event.key == pygame.K_ESCAPE):
+                inicio = None
+                fim = None
+                grid = make_grid(LINHAS,WIDTH)
 
 pygame.quit()
